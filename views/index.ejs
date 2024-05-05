@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SecureShare</title>
+  <style>
+    /* CSS for the animation */
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Applying styles to the title */
+    #pageTitle {
+      font-weight: bold;
+      text-align: center;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    /* Applying styles to the logo */
+    #logo {
+      display: block;
+      margin: 0 auto;
+      max-width: 200px; /* Adjust the width as needed */
+      animation: fadeIn 1s ease forwards;
+    }
+
+    /* Styling for the footer */
+    footer {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 14px;
+      color: #666;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    /* Rest of your CSS styles */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column; /* Center content vertically */
+      height: 100vh;
+    }
+    form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: auto 1fr;
+      max-width: 500px;
+    }
+    label {
+      font-weight: bold;
+    }
+    input[type="file"],
+    input[type="password"] {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Adding the title with an id -->
+  <h1 id="pageTitle">SecureShare: Password-Protected File Sharing Solution</h1>
+
+  <% if (locals.fileLink != null) { %>
+    <div style="margin-bottom: 1rem;">
+      Your file is uploaded
+      <a href="<%= locals.fileLink %>"><%= locals.fileLink %></a>
+    </div>
+  <% } %>
+  <form action="/upload" method="post" enctype="multipart/form-data">
+    <label for="file">File:</label>
+    <input type="file" id="file" name="file" required />
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" />
+    <button type="submit">Share</button>
+  </form>
+
+  <!-- Adding the footer -->
+  <footer>
+    <p>This node app is created by Mohd Shariq</p>
+  </footer>
+
+  <script>
+    // JavaScript to add animation when the page loads
+    window.onload = function() {
+      document.getElementById("pageTitle").classList.add("fadeIn");
+      document.getElementById("logo").classList.add("fadeIn");
+      document.querySelector("footer").classList.add("fadeIn");
+    };
+  </script>
+</body>
+</html>
